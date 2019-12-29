@@ -1,10 +1,12 @@
 package org.openhab.binding.smainverter.connector;
 
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 import org.eclipse.jetty.client.api.ContentResponse;
 import org.eclipse.jetty.client.api.Request;
+import org.eclipse.jetty.client.util.StringContentProvider;
 import org.eclipse.jetty.http.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +42,13 @@ public class WebLoginJob extends SMAAbstractRemoteJob implements Runnable {
 
     @Override
     public void run() {
+        Gson gson = new Gson();
         Request request = createJSONRequest(getLoginURL(), HttpMethod.POST);
         HashMap<String, String> requestJSONMap = new HashMap<String, String>();
         requestJSONMap.put(SMA_LOGIN_KEY_RIGHT, SMA_LOGIN_KEY_RIGHT_USR);
         requestJSONMap.put(SMA_LOGIN_KEY_PASSWORD, this.password);
+        request.content(new StringContentProvider(SMAWebConnectorConstants.CONTENT_TYPE_JSON,
+                gson.toJson(requestJSONMap), StandardCharsets.UTF_8));
         executeRequest(request);
     }
 
