@@ -38,17 +38,17 @@ public abstract class SMAAbstractRemoteJob {
         return totalURL;
     }
 
-    protected Request createJSONRequest(String url, String sessionID) {
-        Request request = createJSONRequest(url);
+    protected Request createJSONRequest(String url, HttpMethod method, String sessionID) {
+        Request request = createJSONRequest(url, method);
         request.param(SMA_KEY_PARAM_SESSIONID, sessionID);
         return request;
     }
 
-    protected Request createJSONRequest(String url) {
+    protected Request createJSONRequest(String url, HttpMethod method) {
         this.httpClient = new HttpClient(new SslContextFactory(true));
         this.httpClient.setFollowRedirects(true);
         Request request = httpClient.newRequest(url);
-        request.method(HttpMethod.POST);
+        request.method(method);
         request.header(HttpHeader.CONTENT_TYPE, SMAWebConnectorConstants.CONTENT_TYPE_JSON);
         request.header(HttpHeader.ACCEPT, SMAWebConnectorConstants.CONTENT_TYPE_JSON);
         return request;
@@ -80,6 +80,7 @@ public abstract class SMAAbstractRemoteJob {
             }
         } catch (Exception e) {
             logger.debug("Something went wrong" + e.getMessage());
+            this.responseWithHTTPError(request, null, e.toString());
         } finally {
             try {
                 this.httpClient.stop();
@@ -89,7 +90,20 @@ public abstract class SMAAbstractRemoteJob {
         }
     }
 
+    /**
+     * Is called in case any error.
+     *
+     * @param request the initial request tried to send
+     * @param response the response - may be null if an exception has been thrown
+     * @param errorMsg the error message, either customized or the stackTrace in case of an exception
+     */
     abstract void responseWithHTTPError(Request request, ContentResponse response, String errorMsg);
 
+    /**
+     * is called in case the http response status code has been 200
+     * 
+     * @param request the initial request
+     * @param response the response
+     */
     abstract void responseWithHTTPSuccess(Request request, ContentResponse response);
 }

@@ -14,6 +14,7 @@ import java.util.TimeZone;
 import org.eclipse.jetty.client.api.ContentResponse;
 import org.eclipse.jetty.client.api.Request;
 import org.eclipse.jetty.client.util.StringContentProvider;
+import org.eclipse.jetty.http.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,12 +125,12 @@ public class WebRequestJob extends SMAAbstractRemoteJob implements Runnable {
     @Override
     public void run() {
         Request request = null;
-        request = createJSONRequest(getTotalProductionURL(), this.sessionID);
+        request = createJSONRequest(getTotalProductionURL(), HttpMethod.POST, this.sessionID);
         configureTotalCurrentProductionRequest(request);
         logger.debug("First we want to get the total amount produced");
         executeRequest(request);
         logger.debug("No we want to get the daily ");
-        request = createJSONRequest(getDailyProductionIRL(), this.sessionID);
+        request = createJSONRequest(getDailyProductionIRL(), HttpMethod.POST, this.sessionID);
         configureDailyProductionRequest(getMidnightOfYesterday(), getMidnightOfToday(), request);
         executeRequest(request);
     }

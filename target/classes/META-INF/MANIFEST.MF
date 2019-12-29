@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.openhab.binding.smainverter
-Bnd-LastModified: 1577647496704
+Bnd-LastModified: 1577648467515
 Bundle-Description: This project contains the official add-ons of open
  HAB
 Bundle-Developers: openhab;email="info@openhab.org";name=openHAB;organ
@@ -21,10 +21,11 @@ Bundle-SCM: url="https://github.com/openhab/openhab2-addons/org.openha
  D
 Bundle-SymbolicName: org.openhab.binding.smainverter
 Bundle-Vendor: openHAB.org
-Bundle-Version: 2.5.0.201912291924
+Bundle-Version: 2.5.0.201912291941
 Created-By: 1.8.0_231 (Oracle Corporation)
 Export-Package: org.openhab.binding.smainverter.connector;version="2.5
- .0";uses:="org.eclipse.jetty.client,org.eclipse.jetty.client.api"
+ .0";uses:="org.eclipse.jetty.client,org.eclipse.jetty.client.api,org.
+ eclipse.jetty.http"
 Import-Package: org.eclipse.smarthome.core.library.types,org.eclipse.s
  marthome.core.library.unit,org.eclipse.smarthome.core.thing,org.eclip
  se.smarthome.core.thing.binding,org.eclipse.smarthome.core.types,com.
