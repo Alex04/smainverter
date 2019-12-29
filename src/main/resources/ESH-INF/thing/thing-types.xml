@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="smainverter"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+    xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+    <thing-type id="inverter">
+        <label>SMA Inverter</label>
+        <description>Used to get data of your sma inverter</description>
+        <channels>
+            <channel id="daily" typeId="dailyType" />
+            <channel id="current" typeId="current" />
+            <channel id="total" typeId="total" />
+        </channels>
+        <config-description>
+            <parameter name="inverterip" type="text" required="true">
+                 <context>network-address</context>
+                <label>Inverter IP</label>
+                <description>Internal IP address of your inverter</description>
+            </parameter>
+            <parameter name="password" type="text" required="true">
+                 <context>password</context>
+                <label>Inverter passwort</label>
+                <description>The user password of your SMA inverter</description>
+            </parameter>
+            <parameter name="refreshInterval" type="integer" required="true">
+                 <context>time</context>
+                <label>Refresh Interval</label>
+                <description>Seconds after refreshing current production status</description>
+                <default>60</default>
+            </parameter>
+        </config-description>
+    </thing-type>
+    
+    <channel-type id="dailyType">
+        <item-type>Number</item-type>
+	    <label>Daily Production</label>
+	    <description>Daily Production</description>
+    <state readOnly="true" pattern="%.3f %unit%" />
+    </channel-type>
+    
+    <channel-type id="current">
+        <item-type>Number:Energy</item-type>
+        <label>Current Production</label>
+        <description>Current Production</description>
+    <state readOnly="true" pattern="%.3f %unit%" />
+    </channel-type>
+    
+    <channel-type id="total">
+        <item-type>Number:Energy</item-type>
+        <label>Total Production</label>
+        <description>Total Production</description>
+    <state readOnly="true" pattern="%.3f %unit%" />
+    </channel-type>
+</thing:thing-descriptions>
+
+<!--  %,.0f
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="smainverter"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+-->
+	<!-- Sample Thing Type 
+	<thing-type id="sample">
+		<label>smainverter Binding Thing</label>
+		<description>Sample thing for smainverter Binding</description>
+
+		<channels>
+			<channel id="channel1" typeId="sample-channel" />
+		</channels>
+
+		<config-description>
+			<parameter name="config1" type="text" required="true">
+				<label>Sample Parameter</label>
+				<description>This is a sample text configuration parameter</description>
+			</parameter>
+		</config-description>
+
+	</thing-type>
+
+	Sample Channel Type 
+	<channel-type id="sample-channel">
+		<item-type>smainverterItem</item-type>
+		<label>smainverter Binding Channel</label>
+		<description>Sample channel for smainverter Binding</description>
+	</channel-type>
+
+</thing:thing-descriptions>
+-->
