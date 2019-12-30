@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.openhab.binding.smainverter
-Bnd-LastModified: 1577651127643
+Bnd-LastModified: 1577741562567
 Bundle-Description: This project contains the official add-ons of open
  HAB
 Bundle-Developers: openhab;email="info@openhab.org";name=openHAB;organ
@@ -21,11 +21,11 @@ Bundle-SCM: url="https://github.com/openhab/openhab2-addons/org.openha
  D
 Bundle-SymbolicName: org.openhab.binding.smainverter
 Bundle-Vendor: openHAB.org
-Bundle-Version: 2.5.0.201912292025
+Bundle-Version: 2.5.0.201912302132
 Created-By: 1.8.0_231 (Oracle Corporation)
 Export-Package: org.openhab.binding.smainverter.connector;version="2.5
  .0";uses:="org.eclipse.jetty.client,org.eclipse.jetty.client.api,org.
- eclipse.jetty.http"
+ eclipse.jetty.http,org.junit.jupiter.api"
 Import-Package: org.eclipse.smarthome.core.library.types,org.eclipse.s
  marthome.core.library.unit,org.eclipse.smarthome.core.thing,org.eclip
  se.smarthome.core.thing.binding,org.eclipse.smarthome.core.types,com.
@@ -34,7 +34,8 @@ Import-Package: org.eclipse.smarthome.core.library.types,org.eclipse.s
  .0,2)",org.eclipse.jetty.client;version="[9.3,10)",org.eclipse.jetty.
  client.api;version="[9.3,10)",org.eclipse.jetty.client.util;version="
  [9.3,10)",org.eclipse.jetty.http;version="[9.3,10)",org.eclipse.jetty
- .util.ssl;version="[9.3,10)",org.slf4j;version="[1.7,2)"
+ .util.ssl;version="[9.3,10)",org.junit.jupiter.api,org.slf4j;version=
+ "[1.7,2)"
 Private-Package: ESH-INF.binding,ESH-INF.i18n,ESH-INF.thing,org.openha
  b.binding.smainverter.internal
 Provide-Capability: osgi.service;objectClass:List<String>="org.eclipse

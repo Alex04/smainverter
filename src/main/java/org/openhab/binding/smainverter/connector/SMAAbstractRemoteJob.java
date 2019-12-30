@@ -23,7 +23,7 @@ public abstract class SMAAbstractRemoteJob {
         String totalURL = this.connectionURL;
 
         if (totalURL.startsWith("http://")) {
-            totalURL.replace("http://", "https://");
+            totalURL = totalURL.replace("http://", "https://");
         } else if (!totalURL.startsWith("https://")) {
             totalURL = "https://" + totalURL;
         }
@@ -101,7 +101,7 @@ public abstract class SMAAbstractRemoteJob {
 
     /**
      * is called in case the http response status code has been 200
-     * 
+     *
      * @param request the initial request
      * @param response the response
      */
